@@ -16,12 +16,8 @@ learning_rate = 0.0001  # passed to the Adam optimizer (https://www.tensorflow.o
 
 def main():
 
-    print("**")
-    print("* Batch Size: %d" % BATCH_SIZE)
-    print("* Capacity: %d" % CAPACITY)
-    print("* Maximum Steps: %d" % MAX_STEP)
-    print("* Learning Rate: %d" % learning_rate)
-    print("**")
+    print("Batch Size: %d" % BATCH_SIZE)
+    print("Maximum Steps: %d" % MAX_STEP)
     print()
 
     train_dir = './data/train/'
@@ -40,13 +36,10 @@ def main():
         CAPACITY,
         )
 
-    print("Constructing inference...")
+    print("Constructing model...")
     train_logits = model.inference(train_batch, BATCH_SIZE, N_CLASSES)
-    print("Constructing losses...")
     train_loss = model.losses(train_logits, train_label_batch)
-    print("Constructing training...")
     train_op = model.trainning(train_loss, learning_rate)
-    print("Constructing evaluation...")
     train__acc = model.evaluation(train_logits, train_label_batch)
 
     summary_op = tf.summary.merge_all()
@@ -69,7 +62,7 @@ def main():
                 summary_str = sess.run(summary_op)
                 train_writer.add_summary(summary_str, step)
 
-            if step % 2000 == 0 or step + 1 == MAX_STEP:
+            if step % (MAX_STEP / 5) == 0 or step + 1 == MAX_STEP:
                 print("Saving model at step %d" % step)
                 checkpoint_path = os.path.join(logs_train_dir, 'model.ckpt')
                 saver.save(sess, checkpoint_path, global_step=step)

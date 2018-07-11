@@ -68,16 +68,14 @@ def get_batch(
     image = tf.cast(image, tf.string)
     label = tf.cast(label, tf.int32)
 
-    # Create Queue
-
+    print("Creating input queue")
     input_queue = tf.train.slice_input_producer([image, label])
 
     label = input_queue[1]
     image_contents = tf.read_file(input_queue[0])
     image = tf.image.decode_jpeg(image_contents, channels=3)
 
-    # Augmentation
-
+    print("Augmenting images")
     image = tf.image.resize_image_with_crop_or_pad(image, image_W,
             image_H)
 
@@ -86,14 +84,14 @@ def get_batch(
     (image_batch, label_batch) = tf.train.batch([image, label],
             batch_size=batch_size, num_threads=64, capacity=capacity)
 
-	# Shuffle
-
+#    print("Shuffling images")
 #    image_batch, label_batch = tf.train.shuffle_batch([image,label],
 #                                                      batch_size=BATCH_SIZE,
 #                                                      num_threads=64,
 #                                                      capacity=CAPACITY,
 #                                                      min_after_dequeue=CAPACITY-1)
 
+    print("Generating batches")
     label_batch = tf.reshape(label_batch, [batch_size])
     image_batch = tf.cast(image_batch, tf.float32)
 

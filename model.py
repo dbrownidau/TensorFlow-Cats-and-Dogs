@@ -11,8 +11,8 @@ def inference(images, batch_size, n_classes):
     '''
 
     # conv1, shape = [kernel size, kernel size, channels, kernel numbers]
-
     with tf.variable_scope('conv1') as scope:
+        print("Loading layer: ", tf.get_variable_scope().name)
         weights = tf.get_variable('weights', shape=[3, 3, 3, 16],
                                   dtype=tf.float32,
                                   initializer=tf.truncated_normal_initializer(stddev=0.1,
@@ -28,6 +28,7 @@ def inference(images, batch_size, n_classes):
     # pool1 and norm1
 
     with tf.variable_scope('pooling1_lrn') as scope:
+        print("Loading layer: ", tf.get_variable_scope().name)
         pool1 = tf.nn.max_pool(conv1, ksize=[1, 3, 3, 1], strides=[1,
                                2, 2, 1], padding='SAME', name='pooling1'
                                )
@@ -43,6 +44,7 @@ def inference(images, batch_size, n_classes):
     # conv2
 
     with tf.variable_scope('conv2') as scope:
+        print("Loading layer: ", tf.get_variable_scope().name)
         weights = tf.get_variable('weights', shape=[3, 3, 16, 16],
                                   dtype=tf.float32,
                                   initializer=tf.truncated_normal_initializer(stddev=0.1,
@@ -58,6 +60,7 @@ def inference(images, batch_size, n_classes):
     # pool2 and norm2
 
     with tf.variable_scope('pooling2_lrn') as scope:
+        print("Loading layer: ", tf.get_variable_scope().name)
         norm2 = tf.nn.lrn(
             conv2,
             depth_radius=4,
@@ -73,6 +76,7 @@ def inference(images, batch_size, n_classes):
     # local3
 
     with tf.variable_scope('local3') as scope:
+        print("Loading layer: ", tf.get_variable_scope().name)
         reshape = tf.reshape(pool2, shape=[batch_size, -1])
         dim = reshape.get_shape()[1].value
         weights = tf.get_variable('weights', shape=[dim, 128],
@@ -88,6 +92,7 @@ def inference(images, batch_size, n_classes):
     # local4
 
     with tf.variable_scope('local4') as scope:
+        print("Loading layer: ", tf.get_variable_scope().name)
         weights = tf.get_variable('weights', shape=[128, 128],
                                   dtype=tf.float32,
                                   initializer=tf.truncated_normal_initializer(stddev=0.005,
@@ -101,6 +106,7 @@ def inference(images, batch_size, n_classes):
     # softmax
 
     with tf.variable_scope('softmax_linear') as scope:
+        print("Loading layer: ", tf.get_variable_scope().name)
         weights = tf.get_variable('softmax_linear', shape=[128,
                                   n_classes], dtype=tf.float32,
                                   initializer=tf.truncated_normal_initializer(stddev=0.005,
