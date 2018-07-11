@@ -1,4 +1,4 @@
-if ! [ -d "data2" ]; then
+if ! [ -d "data" ]; then
 echo "data directory does not exist"
 echo "Download from https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition/data"
 echo "Structure should look like, EX: ./data/train/cat.1234.jpg"
