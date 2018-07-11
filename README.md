@@ -2,6 +2,8 @@
  - Download the "Kaggle Dogs and Cats Redux" dataset, unzip `train.zip` and place the `cat.####.jpg` and `dog.####.jpg` files into `./data/train/`.
  - Execute `run.sh`
 
+![Ayy, It's as easy as that bay-beeeee](https://i.imgur.com/DJ4vMPd.png)
+
 ### Layout
  - `training.py` - Executes the network training.
  - `model.py` - Contains the network layer definitions.
