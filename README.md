@@ -3,9 +3,9 @@
  - Execute `run.sh`
 
 ### Layout
- - training.py - Executes the network training.
- - model.py - Contains the network layer definitions.
- - input_data.py - Ingresses training data and creates lists and batches.
+ - `training.py` - Executes the network training.
+ - `model.py` - Contains the network layer definitions.
+ - `input_data.py` - Ingresses training data and creates lists and batches.
 
 ### Dependencies
  - Python3
@@ -13,9 +13,6 @@
 
 ### Kaggle Dogs and Cats Redux dataset
  - Download link: https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition/data
-
-
-
 
 
 # Additional Help
