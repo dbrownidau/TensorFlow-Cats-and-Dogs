@@ -18,7 +18,8 @@
 `train.py`:
  - Python3
  - TensorFlow
-`check,py`:
+
+`check.py`:
  - xvfb
  - python3-matplotlib
 

@@ -15,6 +15,7 @@ def get_one_image(train):
     ind = np.random.randint(0, n)
     img_dir = train[ind]
 
+    print("Randomly selected: ", img_dir)
     image = Image.open(img_dir)
     plt.imshow(image)
     image = image.resize([208, 208])
@@ -54,7 +55,7 @@ def evaluate_one_image():
             if ckpt and ckpt.model_checkpoint_path:
                 global_step = ckpt.model_checkpoint_path.split('/')[-1].split('-')[-1]
                 saver.restore(sess, ckpt.model_checkpoint_path)
-                print("Loading success, global_step is %s" % global_step)
+                print("Loading success, global_step is", global_step)
             else:
                 print("No checkpoint file found")
 
