@@ -5,15 +5,20 @@ import numpy as np
 import tensorflow as tf
 import input_data
 import model
+import os
 
-def get_one_image(train):
-    '''Randomly pick one image from training data
-     Return: ndarray
-     '''
+def get_test_files(file_dir):
+    tests = []
+    for file in os.listdir(file_dir):
+        tests.append(file_dir + file)
+    print("There are %d tests" % len(tests))
+    image_list = list(tests)
+    return image_list
 
-    n = len(train)
+def get_one_image(image_list):
+    n = len(image_list)
     ind = np.random.randint(0, n)
-    img_dir = train[ind]
+    img_dir = image_list[ind]
 
     print("Randomly selected: ", img_dir)
     image = Image.open(img_dir)
@@ -27,9 +32,8 @@ def evaluate_one_image():
     '''Test one image against the saved models and parameters
      '''
 
-    train_dir = './data/train/'
-    (train, train_label) = input_data.get_files(train_dir)
-    image_array = get_one_image(train)
+    test_dir = './data/test/'
+    image_array = get_one_image(get_test_files(test_dir))
 
     with tf.Graph().as_default():
         BATCH_SIZE = 1
