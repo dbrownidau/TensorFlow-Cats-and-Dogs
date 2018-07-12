@@ -1,12 +1,15 @@
 # Getting Started
- - Download the "Kaggle Dogs and Cats Redux" dataset, unzip `train.zip` and place the `cat.####.jpg` and `dog.####.jpg` files into `./data/train/`.
+ - Download the "Kaggle Dogs and Cats Redux" dataset
+ - unzip `train.zip` and place the `cat.####.jpg` and `dog.####.jpg` files into `./data/train/`.
+ - unzip `test.zip` and place the `####.jpg` files into `./data/test`.
  - Execute `run.sh`
+ - To test your model, execute `evaluate.sh`
 
 #### `run.sh` (`train.py`)
 ![Ayy, It's as easy as that bay-beeeee](https://i.imgur.com/DJ4vMPd.png)
 
 #### `evaluate.sh` (`check.py`)
-![TensorFlow really outdid themselves this time...](https://i.imgur.com/z5rkOVd.png)
+![TensorFlow really outdid themselves this time...](https://i.imgur.com/lLEUEge.png)
 
 ### Layout
  - `training.py` - Executes the network training.
